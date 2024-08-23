@@ -9,22 +9,22 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule],
   templateUrl: './edit-user.component.html'
 })
-export class EditUserComponent implements OnInit {
-  user = { name: '', email: '' };
-  userId: number;
+export class EditUserComponent  {
+  user = { name: '', email: '',id:'' };
+  userId: number=+this.user.id;
 
   constructor(private route: ActivatedRoute, private userService: UserService) {
     this.userId = this.route.snapshot.params['id'];
   }
 
-  ngOnInit(): void {
+  /* ngOnInit(): void {
     this.userService.getUsers().subscribe(users => {
       const foundUser = users.find(u => u.id === this.userId);
       if (foundUser) {
         this.user = foundUser;
       }
     });
-  }
+  } */
 
   updateUser() {
     this.userService.updateUser(this.userId, this.user).subscribe(response => {
